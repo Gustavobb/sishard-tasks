@@ -29,7 +29,7 @@ int vec_int_size(vec_int *v) {
 }
 
 int vec_int_at(vec_int *v, int pos, int *val) {
-    if (v -> data[pos]) {
+    if (pos < v -> size && pos >= 0) {
         *val = v -> data[pos];
         return 1;
     }
@@ -40,8 +40,10 @@ int vec_int_insert(vec_int *v, int pos, int val) {
 
     if (pos > v -> size || pos < 0) return 0;
     if (v -> size == v -> capacity) {
-        v = realloc(v, v -> capacity*2);
-        v -> capacity *= 2;
+        int *new_data_ptr = realloc(v->data, sizeof(int) * (v->capacity * 2));
+        if (new_data_ptr == NULL) return 0;
+        v->data = new_data_ptr;
+        v->capacity *= 2;
     }
 
     for (int i = v -> size; i > pos; i --) {
@@ -64,8 +66,10 @@ int vec_int_remove(vec_int *v, int pos) {
     v -> size --;
 
     if (v -> size*4 == v -> capacity) {
-        v = realloc(v, v -> capacity/2);
-        v -> capacity /= 2;
+        int *new_data_ptr = realloc(v->data, sizeof(int) * (v->capacity/2));
+        if (new_data_ptr == NULL) return 0;
+        v->data = new_data_ptr;
+        v->capacity /= 2;
     }
 
     return 1;
