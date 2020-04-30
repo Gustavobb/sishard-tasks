@@ -5,10 +5,21 @@
 
 /* Recebe duas strings e concatena em uma terceira */
 char *mystrcat(char *str1, char *str2) {
-    return NULL;
+    
+    int i;
+    int str1_lenght = 1;
+    int str2_lenght = 1;
+
+    for (i = 0; str1[i] != 0; i++) str1_lenght ++;
+    for (i = 0; str2[i] != 0; i++) str2_lenght ++;
+
+    char *strcat = malloc((str1_lenght + str2_lenght) * sizeof(char));
+
+    for (i = 0; i < str1_lenght; i++) strcat[i] = str1[i];
+    for (i = 0; i < str2_lenght; i++) strcat[(str1_lenght - 1) + i] = str2[i];
+
+    return strcat;
 }
-
-
 
 int main(int argc, char *argv[]) {
     # define teste1 "str1"

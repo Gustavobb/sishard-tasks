@@ -4,7 +4,19 @@
 #include "macros_correcoes.h"
 
 char *mystrcpy(char *stroriginal) {
-    return NULL;
+
+    int i;
+    int str_lenght = 1;
+
+    for (i = 0; stroriginal[i] != 0; i++) str_lenght ++;
+
+    char *strcpy = malloc(str_lenght * sizeof(char));
+
+    for (i = 0; i < str_lenght; i++) {
+        strcpy[i] = stroriginal[i];
+    }
+    
+    return strcpy;
 }
 
 int main(int argc, char *argv[]) {

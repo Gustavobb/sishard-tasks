@@ -13,6 +13,6 @@ long ex5_solucao(long rdi, long rsi) {
         if (!rdx) r8 += ecx;
         ecx ++;
     }
-    
+
     return r8;
 }
